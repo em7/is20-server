@@ -26,4 +26,13 @@ public class InMemoryBookRepository implements BookRepository {
     public List<Book> allBooks() {
         return Collections.unmodifiableList(books);
     }
+
+    @Override
+    public long addBook(BookToAdd bookToAdd) {
+        final OptionalLong optMaxId = books.stream().mapToLong(Book::getId).max();
+        final long nextId = optMaxId.isPresent() ? optMaxId.getAsLong() + 1 : 1;
+        final Book book = new Book(nextId, bookToAdd.getTitle());
+        books.add(book);
+        return nextId;
+    }
 }

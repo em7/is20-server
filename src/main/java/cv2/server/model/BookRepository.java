@@ -22,4 +22,12 @@ public interface BookRepository {
      * @return A list of all books or an empty list
      */
     List<Book> allBooks();
+
+    /**
+     * Adds a new book, returns its new ID
+     *
+     * @param bookToAdd a book to be added
+     * @return ID of the new book
+     */
+    long addBook(BookToAdd bookToAdd);
 }
